@@ -1,0 +1,20 @@
+{
+  "accounts": [
+    {
+      "id": "rFkK4cGctKfINzp7-etRs",
+      "item": "买水果",
+      "date": "2023-06-19",
+      "type": "-1",
+      "account": "34",
+      "des": ""
+    },
+    {
+      "id": "0xHkEm1yGsz7zt40E3U44",
+      "item": "吃饭",
+      "date": "2023-06-14",
+      "type": "1",
+      "account": "20",
+      "des": ""
+    }
+  ]
+}

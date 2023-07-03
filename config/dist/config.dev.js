@@ -1,0 +1,9 @@
+"use strict";
+
+// 模块化DB配置文件
+module.exports = {
+  DBHOST: '127.0.0.1',
+  DBPORT: 27017,
+  DBNAME: 'bili',
+  SECRET: 'wyysign'
+};

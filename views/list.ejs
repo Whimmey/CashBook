@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      margin: 2vh auto;
+      width: 90vh;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Welcome to <%= title %>
+  </p>
+  <div style="position: relative;">
+    <a href="/account/create" class="btn btn-primary">添加记录</a>
+    <!-- <a href="/logout" class="btn btn-danger" style="margin-left: 50vh;">退出登录</a> -->
+    <form action="/logout" method="post" style="position: absolute;top:0;right:0;">
+      <button class="btn btn-danger">退出登录</button>
+    </form>
+  </div>
+  <hr>
+  <div class="list-group">
+    <% accounts.forEach(ele=>{ %>
+      <div
+        class="list-group-item list-group-item-action  mb-3 rounded-3 <%= ele.type==1?'list-group-item-success':'list-group-item-danger' %>"
+        aria-current="true"> <!-- EJS的三元表达式写到class中 -->
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">
+            <%= ele.item %>
+          </h5>
+          <small>
+            <%= moment(ele.date).format('YYYY-MM-DD') %>
+          </small>
+        </div>
+        <p class="mb-1" style="float:left">
+          <%= ele.account %> 元
+        </p>
+        <a href="/account/<%=ele._id%>" class="btn-close" aria-label="Close" id="del-btn" style="float: right;"></a>
+        <span class="badge bg-primary rounded-pill mx-3" style="float:right">
+          <%= ele.type==1?'收入':'支出' %>
+        </span>
+      </div>
+      <% }) %>
+  </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" flag="<%=toasttrigger%>">
+      <div class="toast-header">
+        <strong class="me-auto">Cash-book</strong>
+        <!-- <small>11 mins ago</small> -->
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        删除成功！
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toastLive = document.getElementById('liveToast')
+    if (toastLive) {
+      if (toastLive.getAttribute('flag') == 'true') {
+        const toast = new bootstrap.Toast(toastLive)
+        toast.show()
+      }
+    }
+    // 删除确认小窗
+    const delBtn = document.querySelectorAll('#del-btn')
+    delBtn.forEach(ele => {
+      ele.addEventListener('click', (e) => {
+        if (confirm('确定删除吗？')) {
+          return true;
+        } else {
+          e.preventDefault();
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css">
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+  <style>
+    body {
+      margin: 2vh auto;
+      width: 90vh;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>
+    <%= title %>
+  </h3>
+  <hr>
+  <form action="/account" method="post">
+    <div class="input-group mb-3">
+      <span class="input-group-text">事项</span>
+      <input type="text" class="form-control" aria-label="Item" name="item">
+    </div>
+    <div class="input-group mb-3 date" id="time">
+      <span class="input-group-text">日期</span>
+      <input type='text' class="form-control" name="date" />
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupSelect">类型</label>
+      <select class="form-select" id="inputGroupSelect" name="type">
+        <option selected>Choose...</option>
+        <option value="1">收入</option>
+        <option value="-1">支出</option>
+      </select>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">金额</span>
+      <input type="text" class="form-control" aria-label="Amount" name="account">
+    </div>
+    <div class="input-group">
+      <span class="input-group-text">描述</span>
+      <textarea class="form-control" aria-label="With textarea" name="des"></textarea>
+    </div>
+    <hr>
+    <button type="submit" class="btn btn-primary" style="float: right;">添加</button>
+  </form>
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
+  <script>
+    $('#time').datepicker({
+      format: 'yyyy-mm-dd',
+      language: 'zh-CN',
+      autoclose: true,
+      todayBtn: true,
+      todayHighlight: true,
+    })
+  </script>
+</body>
+
+</html>
